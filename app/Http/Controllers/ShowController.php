@@ -14,19 +14,9 @@ class ShowController extends Controller
       return view('posts.index')->with('posts', $posts);
     } */
 
-    public function index()
-    {
-
-        $posts = Post::orderBy('created_at','desc')->paginate(10);
-        return view('posts.index')->with('posts', $posts);
-    }
-
+    // Another change, boss!
     public function getSingle($slug) {
-
-
       $post = Post::where('slug', '=', $slug)->first();
       return view('posts.show')->withPost($post);
     }
-
-
 }
