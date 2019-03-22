@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-     
+
         $posts = Post::orderBy('created_at','desc')->paginate(10);
         return view('posts.index')->with('posts', $posts);
     }
@@ -92,13 +92,14 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        
+        $post = Post::find($id);
+        return view('posts.show')->with('post',$post);
     }
 
 
 
     /**
-     
+
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -175,10 +176,10 @@ class PostsController extends Controller
             // Delete Image
             Storage::delete('public/cover_images/'.$post->cover_image);
         }
-        
+
         $post->delete();
         return redirect('/posts')->with('success', 'Post Removed');
     }
 
-    
+
 }

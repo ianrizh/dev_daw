@@ -9,8 +9,24 @@ use DB;
 
 class ShowController extends Controller
 {
-    public function show($id){
-        $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+  /*  public function show(){
+      $posts = Post::orderBy('created_at','desc')->paginate(10);
+      return view('posts.index')->with('posts', $posts);
+    } */
+
+    public function index()
+    {
+
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
+        return view('posts.index')->with('posts', $posts);
     }
+
+    public function getSingle($slug) {
+
+
+      $post = Post::where('slug', '=', $slug)->first();
+      return view('posts.show')->withPost($post);
+    }
+
+
 }

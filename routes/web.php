@@ -14,12 +14,14 @@
 
 Route::get('/', 'PagesController@index');
 Route::resource('posts', 'PostsController',['except' => ['show']]);
-Route::get('posts/{slug}','ShowController@show');
+//Route::get('posts/{slug}','ShowController@show');
+
+//Route::get('allposts','ShowController@index');
+Route::get('/posts/{slug}',['as' => 'posts.show', 'uses' => 'ShowController@getSingle']);
+
 
 
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
 //Route::get('users/{id}', 'ViewArticleController');
-    
-
