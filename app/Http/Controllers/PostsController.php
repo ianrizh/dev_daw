@@ -52,7 +52,7 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique:posts|max:255',,
             'cover_image' => 'image|nullable|max:1999'
         ]);
 
